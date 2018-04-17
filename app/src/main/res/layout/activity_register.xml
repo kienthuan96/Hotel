@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:padding="2dp">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#f5dcdc"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:text="Register Account"/>
+
+    <RelativeLayout
+        android:layout_width="374dp"
+        android:layout_height="424dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="60dp">
+        <!-- Email Label -->
+
+
+
+        <TextView
+            android:textColor="#f5dcdc"
+            android:layout_marginLeft="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Email:"
+            android:layout_marginTop="40dp"
+            android:textSize="25sp"/>
+
+        <EditText
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/edittext_bg"
+            android:textSize="23sp"
+            android:hint="Input your email ..."
+            android:textColor="#f5dcdc"
+            android:id="@+id/edtEmail"
+            android:layout_marginTop="90dp"
+            android:padding="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:textColor="#f5dcdc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Password:"
+            android:layout_marginTop="140dp"
+            android:textSize="25sp"/>
+
+        <EditText
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/edittext_bg"
+            android:textSize="23sp"
+            android:hint="Input your password"
+            android:textColor="#f5dcdc"
+            android:id="@+id/edtFullname"
+            android:layout_marginTop="180dp"
+            android:padding="9dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:textColor="#f5dcdc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Full Name:"
+            android:layout_marginTop="230dp"
+            android:textSize="25sp"/>
+
+        <EditText
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/edittext_bg"
+            android:textSize="23sp"
+            android:hint="Input your Full Name"
+            android:textColor="#f5dcdc"
+            android:id="@+id/edtFullName"
+            android:layout_marginTop="270dp"
+            android:padding="9dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_register"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="330dp"
+            android:layout_marginBottom="24dp"
+            android:padding="10dp"
+            android:textSize="22sp"
+            android:text="Register"/>
+
+        <TextView
+            android:textColor="#f5dcdc"
+            android:layout_gravity="center"
+            android:id="@+id/link_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="380dp"
+            android:layout_marginBottom="24dp"
+            android:text="Already a member? Login"
+            android:gravity="center"
+            android:textSize="16dip"/>
+    </RelativeLayout>
+
+</RelativeLayout>
