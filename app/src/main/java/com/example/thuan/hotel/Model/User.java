@@ -1,4 +1,4 @@
-package com.example.thuan.hotel.Activity.Model;
+package com.example.thuan.hotel.Model;
 
 public class User {
     public String name;
