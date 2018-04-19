@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
+    android:background="@drawable/city"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:padding="2dp">
@@ -18,7 +18,7 @@
 
     <RelativeLayout
         android:layout_width="374dp"
-        android:layout_height="424dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
@@ -26,95 +26,98 @@
         <!-- Email Label -->
 
 
-
         <TextView
-            android:textColor="#f5dcdc"
-            android:layout_marginLeft="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Email:"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="40dp"
-            android:textSize="25sp"/>
+            android:text="Email:"
+            android:textColor="#f5dcdc"
+            android:textSize="25sp" />
 
         <EditText
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/edittext_bg"
-            android:textSize="23sp"
-            android:hint="Input your email ..."
-            android:textColor="#f5dcdc"
             android:id="@+id/edtEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="90dp"
+            android:background="@drawable/custom_edittext_login"
+            android:gravity="center"
+            android:hint="Input your email ..."
             android:padding="5dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:singleLine="true"
+            android:textColor="#212121"
+            android:textSize="23sp" />
 
         <TextView
-            android:layout_marginLeft="5dp"
-            android:textColor="#f5dcdc"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Password:"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="140dp"
-            android:textSize="25sp"/>
+            android:text="Password:"
+            android:textColor="#f5dcdc"
+            android:textSize="25sp" />
 
         <EditText
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/edittext_bg"
-            android:textSize="23sp"
-            android:hint="Input your password"
-            android:textColor="#f5dcdc"
-            android:id="@+id/edtFullname"
-            android:layout_marginTop="180dp"
-            android:padding="9dp"
+            android:id="@+id/edtPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="180dp"
+            android:background="@drawable/custom_edittext_login"
+            android:gravity="center"
+            android:hint="Input your password"
             android:inputType="textPassword"
-            />
+            android:padding="9dp"
+            android:singleLine="true"
+            android:textColor="#212121"
+            android:textSize="23sp" />
 
         <TextView
-            android:layout_marginLeft="5dp"
-            android:textColor="#f5dcdc"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Full Name:"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="230dp"
-            android:textSize="25sp"/>
+            android:text="Full Name:"
+            android:textColor="#f5dcdc"
+            android:textSize="25sp" />
 
         <EditText
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/edittext_bg"
-            android:textSize="23sp"
-            android:hint="Input your Full Name"
-            android:textColor="#f5dcdc"
+            android:singleLine="true"
+            android:gravity="center"
             android:id="@+id/edtFullName"
-            android:layout_marginTop="270dp"
-            android:padding="9dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            />
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="270dp"
+            android:background="@drawable/custom_edittext_login"
+            android:hint="Input your Full Name"
+            android:padding="9dp"
+            android:textColor="#212121"
+            android:textSize="23sp" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_register"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="330dp"
             android:layout_marginBottom="24dp"
+            android:layout_marginTop="350dp"
+            android:background="@drawable/custom_button_login"
             android:padding="10dp"
-            android:textSize="22sp"
-            android:text="Register"/>
+            android:text="Register"
+            android:textSize="22sp" />
 
         <TextView
-            android:textColor="#f5dcdc"
-            android:layout_gravity="center"
             android:id="@+id/link_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="380dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="24dp"
-            android:text="Already a member? Login"
+            android:layout_marginTop="400dp"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:text="Already a member? Login"
+            android:textColor="#f5dcdc"
+            android:textSize="16dip" />
     </RelativeLayout>
 
 </RelativeLayout>

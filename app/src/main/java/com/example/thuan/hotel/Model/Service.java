@@ -8,6 +8,11 @@ public class Service {
     private Boolean swimmingPool;
 
     public Service() {
+        this.wifi=false;
+        this.pet=false;
+        this.restaurant=false;
+        this.bar=false;
+        this.swimmingPool=false;
     }
 
     public Service(Boolean wifi, Boolean pet, Boolean restaurant, Boolean bar, Boolean swimmingPool) {
