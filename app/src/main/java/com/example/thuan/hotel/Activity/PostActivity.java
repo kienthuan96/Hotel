@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class PostActivity extends AppCompatActivity {
-    EditText edtID,edtTen,edtThanhPho,edtQuan,edtDiaChi,edtSDT,edtGia;
+    EditText edtTen,edtThanhPho,edtQuan,edtDiaChi,edtSDT,edtGia;
     ImageView img1,img2,img3;
     CheckBox chkWifi,chkPet,chkSwimmingPool,chkBar,chkRestaurant;
     DatabaseReference myRef;
@@ -152,7 +152,6 @@ public class PostActivity extends AppCompatActivity {
 
 
     private void id(){
-        edtID=findViewById(R.id.edtIDHotel);
         edtTen=findViewById(R.id.edtTenHotel);
         edtThanhPho=findViewById(R.id.edtThanhPhoHotel);
         edtQuan=findViewById(R.id.edtQuanHotel);
@@ -170,6 +169,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void save(){
+        String temp=myRef.push().getKey();
         Service service=new Service(chkWifi.isChecked(),
                 chkPet.isChecked(),
                 chkRestaurant.isChecked(),
@@ -179,7 +179,6 @@ public class PostActivity extends AppCompatActivity {
         hotel.setImg1(uploadIMG(img1));
         hotel.setImg2(uploadIMG(img2));
         hotel.setImg3(uploadIMG(img3));
-        hotel.setId(Integer.parseInt(edtID.getText().toString()));
         hotel.setName(edtTen.getText().toString());
         hotel.setCity(edtThanhPho.getText().toString());
         hotel.setDistrict(edtThanhPho.getText().toString());
@@ -187,14 +186,16 @@ public class PostActivity extends AppCompatActivity {
         hotel.setNumberPhone(Integer.parseInt(edtSDT.getText().toString()));
         hotel.setPrice(Float.parseFloat(edtGia.getText().toString()));
 
-        myRef.push().setValue(hotel);
+        hotel.setId(temp);
+        myRef.child(temp).setValue(hotel);
+
     }
     public String uploadIMG(ImageView imageView){
         Calendar calendar=Calendar.getInstance();
 
         String ten=calendar.getTimeInMillis()+"";
 
-        StorageReference filepath=storageRef.child("IMG_CONTACT").child("image"+ten);
+        StorageReference filepath=storageRef.child("IMG_CONTACT").child(ten);
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
         Bitmap bitmap = imageView.getDrawingCache();

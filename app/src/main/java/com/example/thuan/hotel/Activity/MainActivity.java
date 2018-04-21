@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button btnLogin, btnRegister, btnPost;
+    Button btnLogin, btnRegister, btnPost, btnList;
     FirebaseUser user;
     Context context;
     public static final int REQUEST_CODE_REGISTER = 1;
@@ -43,10 +43,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void list(){
+        Intent intent = new Intent(MainActivity.this, ListHotelActivity.class);
+        startActivity(intent);
+    }
+
     private void anhXa() {
         btnLogin =  findViewById(R.id.btnLogin);
         btnRegister =  findViewById(R.id.btnRegister);
         btnPost=findViewById(R.id.btnPost);
+        btnList=findViewById(R.id.btnList);
+
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +76,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btnList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                list();
+            }
+        });
 //        if(user != null) {
 ////            Toast.makeText(MainActivity.this, "" + "That bai"+user.getUid(), Toast.LENGTH_LONG).show();
 //            Toast.makeText(MainActivity.this, "" + "That bai", Toast.LENGTH_LONG).show();

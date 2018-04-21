@@ -1,7 +1,7 @@
 package com.example.thuan.hotel.Model;
 
 public class Hotel {
-    private Integer id;
+    private String id;
     private String name;
     private String city;
     private String district;
@@ -26,7 +26,7 @@ public class Hotel {
 //    }
 
 
-    public Hotel(Integer id, String name, String city, String district, String address, Integer numberPhone, Float price, Service service, String img1, String img2, String img3) {
+    public Hotel(String id, String name, String city, String district, String address, Integer numberPhone, Float price, Service service, String img1, String img2, String img3) {
         this.id = id;
         this.name = name;
         this.city = city;
@@ -38,6 +38,27 @@ public class Hotel {
         this.img1 = img1;
         this.img2 = img2;
         this.img3 = img3;
+    }
+    public void Hotel(Hotel hotel){
+        this.id = hotel.id;
+        this.name = hotel.name;
+        this.city = hotel.city;
+        this.district = hotel.district;
+        this.address = hotel.address;
+        this.numberPhone = hotel.numberPhone;
+        this.price = hotel.price;
+        this.service = hotel.service;
+        this.img1 = hotel.img1;
+        this.img2 = hotel.img2;
+        this.img3 = hotel.img3;
+    }
+
+    public Hotel(String id,String name, String district, Float price, String img1) {
+        this.id=id;
+        this.name = name;
+        this.district = district;
+        this.price = price;
+        this.img1 = img1;
     }
 
     public String getImg1() {
@@ -64,11 +85,11 @@ public class Hotel {
         this.img3 = img3;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
