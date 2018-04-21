@@ -50,7 +50,7 @@ public class Adapter_Hotel extends ArrayAdapter {
         StorageReference storageRef = storage.getReference();
         StorageReference pathReference = storageRef.child("IMG_CONTACT/"+hotel.getImg1());
         //Glide.with(context).using(new FirebaseImageLoader()).load(pathReference).into(imageView);
-        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F1524281446722?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(imageView);
+        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"+hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(imageView);
 
         txtTen.setText(hotel.getName());
         txtDiaChi.setText(hotel.getAddress());
