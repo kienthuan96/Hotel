@@ -91,7 +91,7 @@
         <TextView
             android:textColor="#f5dcdc"
             android:layout_gravity="center"
-            android:id="@+id/link_register"
+            android:id="@+id/txt_link_register"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="340dp"

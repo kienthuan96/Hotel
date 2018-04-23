@@ -2,6 +2,8 @@ package com.example.thuan.hotel.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button btnLogin, btnRegister, btnPost, btnList;
+    Button btnLogin, btnRegister, btnPost, btnList, btnFavorite;
     FirebaseUser user;
     Context context;
     public static final int REQUEST_CODE_REGISTER = 1;
@@ -48,12 +50,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void favorite(){
+        Intent intent = new Intent(MainActivity.this, FavoriteHotelActivity.class);
+        startActivity(intent);
+    }
+
     private void anhXa() {
         btnLogin =  findViewById(R.id.btnLogin);
         btnRegister =  findViewById(R.id.btnRegister);
         btnPost=findViewById(R.id.btnPost);
         btnList=findViewById(R.id.btnList);
-
+        btnFavorite = findViewById(R.id.btnFavorite);
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
                 list();
             }
         });
-//        if(user != null) {
-////            Toast.makeText(MainActivity.this, "" + "That bai"+user.getUid(), Toast.LENGTH_LONG).show();
-//            Toast.makeText(MainActivity.this, "" + "That bai", Toast.LENGTH_LONG).show();
-//        }
-//        else {
-//            login();
-//        }
+
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favorite();
+            }
+        });
     }
 }

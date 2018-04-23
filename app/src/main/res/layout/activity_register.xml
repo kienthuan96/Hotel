@@ -108,7 +108,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/link_login"
+            android:id="@+id/txt_link_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
