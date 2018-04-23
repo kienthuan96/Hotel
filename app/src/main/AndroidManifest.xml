@@ -15,14 +15,17 @@
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/AppTheme2">
+
+        </activity>
+        <activity android:name=".Activity.Search2Activity" >
+        </activity>
+        <activity android:name=".Activity.SearchActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Search2Activity" />
-        <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.RegisterActivity" />

@@ -1,10 +1,14 @@
 package com.example.thuan.hotel.Activity;
 import com.example.thuan.hotel.R;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -55,8 +59,15 @@ public class SearchActivity extends AppCompatActivity {
 
         if(t.onOptionsItemSelected(item))
             return true;
+        switch (item.getItemId()) {
+            case R.id.menuLogin:
+                Intent intent=new Intent(SearchActivity.this,LoginActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
-        return super.onOptionsItemSelected(item);
     }
     public static boolean containsIgnoreCase(String str, String searchStr)     {
         if(str == null || searchStr == null) return false;
@@ -242,6 +253,12 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        return true;
     }
 
 

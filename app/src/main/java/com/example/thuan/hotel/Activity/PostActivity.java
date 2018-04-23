@@ -58,6 +58,7 @@ public class PostActivity extends AppCompatActivity {
     Uri uri;
     Hotel hotel;
     ArrayList<Integer> arrayListRate;
+    String id_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,10 @@ public class PostActivity extends AppCompatActivity {
         urlImg1=new String();
         urlImg2=new String();
         urlImg3=new String();
+
+        Intent intent=getIntent();
+        Bundle bundle=intent.getBundleExtra("goi");
+        id_user=bundle.getString("id");
 
         id();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -212,7 +217,7 @@ public class PostActivity extends AppCompatActivity {
         hotel.setAddress( edtDiaChi.getText().toString());
         hotel.setNumberPhone(Integer.parseInt(edtSDT.getText().toString()));
         hotel.setPrice(Float.parseFloat(edtGia.getText().toString()));
-        hotel.setId_user("HWoeE7Djj9PJtxMF2UNGKwSyRxt2");
+        hotel.setId_user(id_user);
         hotel.setId(temp);
         myRef.child(temp).setValue(hotel);
 

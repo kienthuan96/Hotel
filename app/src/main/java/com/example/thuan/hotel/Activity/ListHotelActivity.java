@@ -3,6 +3,9 @@ package com.example.thuan.hotel.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 
 public class ListHotelActivity extends AppCompatActivity {
     ListView lstHotel;
+    String id_user;
     ArrayList<Hotel> arrayList;
     Adapter_Hotel adapter_hotel;
     DatabaseReference myRef;
@@ -30,13 +34,18 @@ public class ListHotelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_hotel);
         myRef = database.getReference("hotel");
+
+        Intent intent=getIntent();
+        Bundle bundle=intent.getBundleExtra("goi");
+        id_user=bundle.getString("id");
+
         id();
         event();
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Hotel hotel=dataSnapshot.getValue(Hotel.class);
-                arrayList.add(hotel);
+                if(id_user.equals(hotel.getId_user()))  arrayList.add(hotel);
                 adapter_hotel.notifyDataSetChanged();
             }
 
@@ -79,5 +88,27 @@ public class ListHotelActivity extends AppCompatActivity {
                 Toast.makeText(ListHotelActivity.this,"Thanh cong"+arrayList.get(i).getName(),Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_admin, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menuPost:
+                Intent intent=new Intent(ListHotelActivity.this,PostActivity.class);
+                Bundle bundle1=new Bundle();
+                bundle1.putString("id",id_user);
+                intent.putExtra("goi",bundle1);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
