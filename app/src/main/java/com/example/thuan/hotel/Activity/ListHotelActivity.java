@@ -1,8 +1,12 @@
 package com.example.thuan.hotel.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.thuan.hotel.Adapter.Adapter_Hotel;
 import com.example.thuan.hotel.Model.Hotel;
@@ -27,6 +31,7 @@ public class ListHotelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_hotel);
         myRef = database.getReference("hotel");
         id();
+        event();
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -63,5 +68,15 @@ public class ListHotelActivity extends AppCompatActivity {
         arrayList=new ArrayList<>();
         adapter_hotel=new Adapter_Hotel(ListHotelActivity.this,R.layout.layout_item_hotel,arrayList);
         lstHotel.setAdapter(adapter_hotel);
+    }
+
+    private void event(){
+        lstHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(ListHotelActivity.this,DetaiHotelActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

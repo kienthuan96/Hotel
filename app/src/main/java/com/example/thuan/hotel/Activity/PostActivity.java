@@ -207,7 +207,6 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle unsuccessful uploads
-               // Toast.makeText(PostActivity.this,"Thêm Thất Bại !!!" , Toast.LENGTH_LONG).show();
             }
         });
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

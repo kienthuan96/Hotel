@@ -10,20 +10,11 @@ public class Hotel {
     private Float price;
     private Service service;
     private String img1,img2,img3;
+    private String id_user;
 
     public Hotel() {
     }
 
-//    public Hotel(Integer id, String name, String city, String district, String address, Integer numberPhone, Float price, Service service) {
-//        this.id = id;
-//        this.name = name;
-//        this.city = city;
-//        this.district = district;
-//        this.address = address;
-//        this.numberPhone = numberPhone;
-//        this.price = price;
-//        this.service = service;
-//    }
 
 
     public Hotel(String id, String name, String city, String district, String address, Integer numberPhone, Float price, Service service, String img1, String img2, String img3) {
