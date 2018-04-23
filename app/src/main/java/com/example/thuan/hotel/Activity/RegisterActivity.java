@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -63,7 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         user = mAuth.getCurrentUser();
-                                        myRef.child("users").child(user.getUid()).setValue(fullname);
+                                        UserProfileChangeRequest userProfileChangeRequest= new UserProfileChangeRequest.Builder().setDisplayName(fullname).build();
+                                        user.updateProfile(userProfileChangeRequest);
                                         // Sign in success, update UI with the signed-in user's information
                                         Toast.makeText(RegisterActivity.this, "Đăng ký thành công",
                                                 Toast.LENGTH_SHORT).show();
@@ -86,4 +88,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
 }
