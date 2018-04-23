@@ -14,6 +14,12 @@ public class Hotel {
     public Hotel() {
     }
 
+    public Hotel(String name, String address, Float price) {
+        this.name = name;
+        this.address = address;
+        this.price = price;
+    }
+
 //    public Hotel(Integer id, String name, String city, String district, String address, Integer numberPhone, Float price, Service service) {
 //        this.id = id;
 //        this.name = name;

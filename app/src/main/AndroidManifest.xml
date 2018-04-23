@@ -20,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.Search2Activity"></activity>
+        <activity android:name=".Activity.SearchActivity"></activity>
         <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.RegisterActivity" />
