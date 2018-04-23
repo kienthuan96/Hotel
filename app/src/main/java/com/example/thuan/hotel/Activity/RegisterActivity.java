@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thuan.hotel.R;
@@ -23,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
     FirebaseUser user;
+    TextView txt_link_login;
     EditText edtEmail, edtPassword, edtFullName;
     Button btnRegister;
     @Override
@@ -41,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         edtFullName = (EditText) findViewById(R.id.edtFullName);
         btnRegister = (Button) findViewById(R.id.btn_register);
+        txt_link_login = (TextView) findViewById(R.id.txt_link_login);
     }
 
     public void init() {
@@ -61,11 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         user = mAuth.getCurrentUser();
-
                                         UserProfileChangeRequest userProfileChangeRequest= new UserProfileChangeRequest.Builder().setDisplayName(fullname).build();
                                         user.updateProfile(userProfileChangeRequest);
-
-                                        myRef.child("users").child(user.getUid()).setValue(fullname);
                                         // Sign in success, update UI with the signed-in user's information
                                         Toast.makeText(RegisterActivity.this, "Đăng ký thành công",
                                                 Toast.LENGTH_SHORT).show();
@@ -77,6 +77,14 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             });
                 }
+            }
+        });
+
+        txt_link_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

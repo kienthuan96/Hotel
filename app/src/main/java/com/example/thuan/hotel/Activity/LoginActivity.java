@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtRegister;
     Button btnLogin;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         btnLogin = (Button) findViewById(R.id.btn_login);
-        txtRegister=findViewById(R.id.link_register);
+        txtRegister=findViewById(R.id.txt_link_register);
     }
 
     public void init() {
