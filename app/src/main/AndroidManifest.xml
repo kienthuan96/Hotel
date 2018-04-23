@@ -21,11 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.Search2Activity" />
+        <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.ListHotelActivity" />
-        <activity android:name=".Activity.DetaiHotelActivity"></activity>
+        <activity android:name=".Activity.DetaiHotelActivity" />
+        <activity android:name=".SplashActivity"></activity>
     </application>
 
 </manifest>

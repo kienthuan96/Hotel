@@ -1,4 +1,5 @@
 package com.example.thuan.hotel.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -59,6 +61,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         user = mAuth.getCurrentUser();
+
+                                        UserProfileChangeRequest userProfileChangeRequest= new UserProfileChangeRequest.Builder().setDisplayName(fullname).build();
+                                        user.updateProfile(userProfileChangeRequest);
+
                                         myRef.child("users").child(user.getUid()).setValue(fullname);
                                         // Sign in success, update UI with the signed-in user's information
                                         Toast.makeText(RegisterActivity.this, "Đăng ký thành công",

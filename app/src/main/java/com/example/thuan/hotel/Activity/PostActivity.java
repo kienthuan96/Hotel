@@ -14,9 +14,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.thuan.hotel.Model.Hotel;
@@ -42,6 +45,7 @@ public class PostActivity extends AppCompatActivity {
     EditText edtTen,edtThanhPho,edtQuan,edtDiaChi,edtSDT,edtGia;
     ImageView img1,img2,img3;
     CheckBox chkWifi,chkPet,chkSwimmingPool,chkBar,chkRestaurant;
+    Spinner spnRate;
     DatabaseReference myRef;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -53,6 +57,7 @@ public class PostActivity extends AppCompatActivity {
     String urlImg1,urlImg2,urlImg3;
     Uri uri;
     Hotel hotel;
+    ArrayList<Integer> arrayListRate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +106,27 @@ public class PostActivity extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE);
+            }
+        });
+
+        arrayListRate=new ArrayList<>();
+        arrayListRate.add(1);
+        arrayListRate.add(2);
+        arrayListRate.add(3);
+        arrayListRate.add(4);
+        arrayListRate.add(5);
+        ArrayAdapter arrayAdapter=new ArrayAdapter(PostActivity.this,android.R.layout.simple_spinner_item,arrayListRate);
+        spnRate.setAdapter(arrayAdapter);
+        spnRate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(PostActivity.this,arrayListRate.get(i).toString(),Toast.LENGTH_SHORT).show();
+                hotel.setStars(arrayListRate.get(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
@@ -166,6 +192,7 @@ public class PostActivity extends AppCompatActivity {
         chkRestaurant=findViewById(R.id.chkResaurant);
         chkBar=findViewById(R.id.chkBar);
         chkSwimmingPool=findViewById(R.id.chkSwimmingPool);
+        spnRate=findViewById(R.id.spRate);
     }
 
     private void save(){
@@ -185,7 +212,7 @@ public class PostActivity extends AppCompatActivity {
         hotel.setAddress( edtDiaChi.getText().toString());
         hotel.setNumberPhone(Integer.parseInt(edtSDT.getText().toString()));
         hotel.setPrice(Float.parseFloat(edtGia.getText().toString()));
-
+        hotel.setId_user("HWoeE7Djj9PJtxMF2UNGKwSyRxt2");
         hotel.setId(temp);
         myRef.child(temp).setValue(hotel);
 

@@ -75,7 +75,8 @@ public class ListHotelActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent(ListHotelActivity.this,DetaiHotelActivity.class);
-                startActivity(intent);
+//                startActivity(intent);
+                Toast.makeText(ListHotelActivity.this,"Thanh cong"+arrayList.get(i).getName(),Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -11,8 +11,17 @@ public class Hotel {
     private Service service;
     private String img1,img2,img3;
     private String id_user;
+    private Integer stars=5;
+    private Integer rate=7;
 
     public Hotel() {
+    }
+
+
+    public Hotel(String name, String address, Float price) {
+        this.name = name;
+        this.address = address;
+        this.price = price;
     }
 
 
@@ -50,6 +59,30 @@ public class Hotel {
         this.district = district;
         this.price = price;
         this.img1 = img1;
+    }
+
+    public String getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(String id_user) {
+        this.id_user = id_user;
+    }
+
+    public Integer getStars() {
+        return stars;
+    }
+
+    public void setStars(Integer stars) {
+        this.stars = stars;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
     public String getImg1() {

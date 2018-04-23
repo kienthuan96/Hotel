@@ -68,7 +68,9 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(LoginActivity.this, ListHotelActivity.class);
                                         startActivity(intent);
                                     } else {
