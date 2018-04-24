@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:gravity="center"
+        android:textSize="40dp"
+        android:text="Ten Khach San"
+        android:id="@+id/txtTenKS"
+        android:layout_width="match_parent "
+        android:layout_height="50dp" />
+    <TextView
+        android:text="Giá tiền"
+        android:id="@+id/txtGiaKS"
+        android:layout_below="@+id/txtTenKS"
+        android:layout_width="match_parent "
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="Dia Chi"
+        android:id="@+id/txtDiaChiKS"
+        android:layout_below="@+id/txtGiaKS"
+        android:layout_width="match_parent "
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="SDT"
+        android:id="@+id/txtSDTKS"
+        android:layout_below="@+id/txtDiaChiKS"
+        android:layout_width="match_parent "
+        android:layout_height="wrap_content" />
+    <RatingBar
+        android:id="@+id/rbKS"
+        android:layout_below="@+id/txtSDTKS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
