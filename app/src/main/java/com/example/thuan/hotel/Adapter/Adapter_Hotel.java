@@ -15,10 +15,10 @@ import android.widget.Toast;
 import com.example.thuan.hotel.Activity.ListHotelActivity;
 import com.example.thuan.hotel.Model.Hotel;
 import com.example.thuan.hotel.R;
+import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -52,8 +52,8 @@ public class Adapter_Hotel extends ArrayAdapter {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference pathReference = storageRef.child("IMG_CONTACT/"+hotel.getImg1());
-//        Glide.with(context).using(new FirebaseImageLoader()).load(pathReference).into(imageView);
-        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"+hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(imageView);
+        Glide.with(context).using(new FirebaseImageLoader()).load(pathReference).into(imageView);
+//        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"+hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(imageView);
         Log.d("URL ",pathReference.getDownloadUrl().toString());
         txtTen.setText(hotel.getName());
         txtDiaChi.setText(hotel.getAddress());
