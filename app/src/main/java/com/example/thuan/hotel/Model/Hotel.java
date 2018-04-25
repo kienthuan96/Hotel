@@ -19,6 +19,11 @@ public class Hotel {
         this.address = address;
         this.price = price;
     }
+ /*   public Hotel(String name, String address, Float price,String img1) {
+        this.name = name;
+        this.address = address;
+        this.price = price;
+    }*/
 
 //    public Hotel(Integer id, String name, String city, String district, String address, Integer numberPhone, Float price, Service service) {
 //        this.id = id;
