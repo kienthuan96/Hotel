@@ -63,7 +63,7 @@ public class Adapter_Favorite_Hotel extends BaseAdapter {
 
         txtNameFavorite.setText(hotel.getName());
         txtAddressFavorite.setText("Địa chỉ: " + hotel.getAddress());
-        txtPriceFavorite.setText("Giá : " + hotel.getPrice().toString());
+        txtPriceFavorite.setText("Giá : 100000");
         return row;
     }
 }

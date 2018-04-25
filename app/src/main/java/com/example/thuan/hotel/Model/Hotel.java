@@ -24,6 +24,12 @@ public class Hotel {
         this.price = price;
     }
 
+    public Hotel(String name, String address, Float price, Integer rate) {
+        this.name = name;
+        this.address = address;
+        this.price = price;
+        this.rate = rate;
+    }
 
 
     public Hotel(String id, String name, String city, String district, String address, Integer numberPhone, Float price, Service service, String img1, String img2, String img3) {
