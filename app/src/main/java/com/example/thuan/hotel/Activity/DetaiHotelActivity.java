@@ -33,6 +33,7 @@ public class DetaiHotelActivity extends AppCompatActivity {
     SQLiteDatabase databaseSQL;
     TabHost tabHost;
     String id_hotel;
+
     TextView txtTenKS,txtDiaChiKS,txtGiaKS,txtSDTKS;
     ImageView img;
     DatabaseReference myRef;
