@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(LoginActivity.this, FavoriteHotelActivity.class);
+                                        Intent intent = new Intent(LoginActivity.this, ListHotelActivity.class);
                                         Bundle bundle=new Bundle();
                                         bundle.putString("id",user.getUid());
                                         intent.putExtra("goi",bundle);

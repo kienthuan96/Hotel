@@ -1,5 +1,7 @@
 package com.example.thuan.hotel;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +35,12 @@ public class DeleteActivity extends AppCompatActivity {
 
         myRef = database.getReference("hotel");
 
+        readData();
+        event();
+
+    }
+    private void readData(){
+        arrayList.clear();
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -61,10 +69,7 @@ public class DeleteActivity extends AppCompatActivity {
 
             }
         });
-        event();
-
     }
-
 
     private void id(){
         lstDelete=findViewById(R.id.lstDelete);
@@ -77,8 +82,29 @@ public class DeleteActivity extends AppCompatActivity {
         lstDelete.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                delete(i);
                 return false;
             }
         });
+    }
+
+    public void delete(final int stt){
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+        alertDialog.setTitle("Thông báo")
+                .setMessage("Bạn có muốn xóa không?")
+                .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        myRef.child(arrayList.get(stt).getId()).removeValue();
+                        readData();
+                    }
+                })
+                .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
     }
 }
