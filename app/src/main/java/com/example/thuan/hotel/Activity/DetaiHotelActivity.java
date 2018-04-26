@@ -1,5 +1,6 @@
 package com.example.thuan.hotel.Activity;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ public class DetaiHotelActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     Hotel hotel;
     RatingBar ratingBar;
+    FloatingActionButton clickFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,5 +89,6 @@ public class DetaiHotelActivity extends AppCompatActivity {
         txtGiaKS=findViewById(R.id.txtGiaKS);
         img=findViewById(R.id.imgHotel);
         ratingBar=findViewById(R.id.rbKS);
+        clickFavorite=findViewById(R.id.clickFavorite);
     }
 }
