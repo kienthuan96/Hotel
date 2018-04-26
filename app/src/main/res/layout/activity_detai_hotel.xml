@@ -20,7 +20,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:clickable="true"
-            app:srcCompat="@drawable/ic_thumb_up_black_24dp" />
+            app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
 
         <ImageView
             android:id="@+id/imgHotel"

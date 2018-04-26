@@ -103,12 +103,18 @@ public class FavoriteHotelActivity extends AppCompatActivity {
         arrHotelID.clear();
         databaseSQL = Database.initDatabase(this, DATABASE_NAME);
         Cursor cursor = databaseSQL.rawQuery("SELECT * FROM favorite where user_id = '" + user.getUid()  +"'",null);
-        for(int i = 0; i < cursor.getCount(); i++){
-            cursor.moveToPosition(i);
-            String hotel_id = cursor.getString(0);
-            arrHotelID.add(hotel_id);
-            Log.d("Hotel_ID " + i, hotel_id);
+
+        if(cursor.getCount() == 0) {
+            Toast.makeText(this, "Hiện vẫn chưa có khách sạn nào trong danh sách yêu thích", Toast.LENGTH_LONG).show();
         }
+        else {
+            for(int i = 0; i < cursor.getCount(); i++){
+                cursor.moveToPosition(i);
+                String hotel_id = cursor.getString(0);
+                arrHotelID.add(hotel_id);
+            }
+        }
+
     }
 
     private boolean show(final String hotel_id) {
@@ -141,8 +147,12 @@ public class FavoriteHotelActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                Toast.makeText(FavoriteHotelActivity.this, "pick co", Toast.LENGTH_SHORT).show();
-                //show(position);
+            String hotel_id =arrayList.get(position).getId();
+            Intent intent = new Intent(FavoriteHotelActivity.this, DetaiHotelActivity.class);
+            Bundle bundle1=new Bundle();
+            bundle1.putString("id",hotel_id);
+            intent.putExtra("goi",bundle1);
+            startActivity(intent);
             }
         });
 
