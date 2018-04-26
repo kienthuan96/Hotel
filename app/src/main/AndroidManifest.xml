@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,19 +23,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Search2Activity" >
-        </activity>
-        <activity android:name=".Activity.SearchActivity" >
-        </activity>
+        <activity android:name=".Activity.Search2Activity"></activity>
+        <activity android:name=".Activity.SearchActivity"></activity>
         <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.RegisterActivity" />
-
-        <activity android:name=".Activity.ListHotelActivity"></activity>
-        <activity android:name=".Activity.FavoriteHotelActivity"></activity>
+        <activity android:name=".Activity.ListHotelActivity" />
+        <activity android:name=".Activity.FavoriteHotelActivity" />
         <activity android:name=".Activity.DetaiHotelActivity" />
-        <activity android:name=".SplashActivity"></activity>
-
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".DeleteActivity"></activity>
     </application>
 
 </manifest>
