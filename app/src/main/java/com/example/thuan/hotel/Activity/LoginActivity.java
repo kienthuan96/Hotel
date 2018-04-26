@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtEmail, edtPassword;
     TextView txtRegister;
     Button btnLogin;
+    Animation aniLogin;
+    ImageView imgAvatar;
 
 
     @Override
@@ -44,9 +49,12 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         btnLogin = (Button) findViewById(R.id.btn_login);
         txtRegister=findViewById(R.id.txt_link_register);
+        imgAvatar=findViewById(R.id.imgAvatar);
+        aniLogin= AnimationUtils.loadAnimation(this,R.anim.login);
     }
 
     public void init() {
+        imgAvatar.setAnimation(aniLogin);
         txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

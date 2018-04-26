@@ -1,5 +1,13 @@
 package com.example.thuan.hotel.Activity;
 
+
+import android.app.Dialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,6 +37,7 @@ public class ListHotelActivity extends AppCompatActivity {
     ArrayList<Hotel> arrayList;
     Adapter_Hotel adapter_hotel;
     DatabaseReference myRef;
+    Button btnDialogCo,btnDiaalogKhong;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +50,16 @@ public class ListHotelActivity extends AppCompatActivity {
         id_user=bundle.getString("id");
 
         id();
+
+        lstHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                show(position);
+            }
+        });
+
         event();
+
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -70,6 +89,26 @@ public class ListHotelActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void show(int position) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_dialog);
+        btnDialogCo = dialog.findViewById(R.id.btn_dialogok);
+        btnDiaalogKhong= dialog.findViewById(R.id.btn_dialogkhong);
+        dialog.show();
+        btnDialogCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ListHotelActivity.this, "pick co", Toast.LENGTH_SHORT).show();
+            }
+        });
+        btnDiaalogKhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ListHotelActivity.this, "pick khong", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void id(){

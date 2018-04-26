@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLogin, btnRegister, btnPost, btnList, btnSearch, btnFavorite;
+    Button btnLogin, btnRegister, btnPost, btnList, btnSearch, btnFavorite,btnDetail;
 
     FirebaseUser user;
     Context context;
@@ -61,13 +61,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, FavoriteHotelActivity.class);
         startActivity(intent);
     }
+    private void detail(){
+        Intent intent = new Intent(MainActivity.this, DetaiHotelActivity.class);
+        startActivity(intent);
+    }
 
     private void anhXa() {
         btnLogin =  findViewById(R.id.btnLogin);
         btnRegister =  findViewById(R.id.btnRegister);
         btnPost=findViewById(R.id.btnPost);
         btnList=findViewById(R.id.btnList);
-
+        btnDetail=findViewById(R.id.btnDetail);
         btnFavorite = findViewById(R.id.btnFavorite);
         btnSearch = findViewById(R.id.btnSearch);
 
@@ -110,6 +114,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 favorite();
+            }
+        });
+
+        btnDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detail();
             }
         });
     }

@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.example.thuan.hotel.R;
 import com.bumptech.glide.Glide;
 import com.example.thuan.hotel.Model.Hotel;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -54,10 +57,16 @@ public class Adapter_Search_Hotel extends BaseAdapter {
         rbDanhGia.setNumStars(5);
         rbDanhGia.setRating(3);
 
-        Glide.with(mContext)
+      /*  Glide.with(mContext)
                 .load("https://firebasestorage.googleapis.com/v0/b/khachsanseach.appspot.com/o/KhachSan1.jpg?alt=media&token=d3e56926-a166-4b3a-b003-c35fd4b1198c")
-                .into(Imview);
+                .into(Imview);*/
         //v.setTag(mChuyenXeList.get(i).get);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference pathReference = storageRef.child("IMG_CONTACT/"+"KhachSan1.jpg");
+        //Glide.with(context).using(new FirebaseImageLoader()).load(pathReference).into(imageView);
+        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"+"KhachSan1.jpg"+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(Imview);
+
 
         return v;
 

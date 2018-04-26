@@ -12,8 +12,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.thuan.hotel.Model.Hotel;
 import com.example.thuan.hotel.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -53,17 +55,21 @@ public class Adapter_Favorite_Hotel extends BaseAdapter {
         TextView txtNameFavorite    = row.findViewById(R.id.txtNameFavorite);
         TextView txtAddressFavorite = row.findViewById(R.id.txtAddressFavorite);
         TextView txtPriceFavorite   = row.findViewById(R.id.txtPriceFavorite);
+        TextView txtRateFavorite    = row.findViewById(R.id.txtRateFavorite);
 
         Hotel hotel = arrayList.get(position);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference pathReference = storageRef.child("IMG_CONTACT/"+hotel.getImg1());
-        //Glide.with(context).using(new FirebaseImageLoader()).load(pathReference).into(imageView);
-        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"+hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(imgHotelFavorite);
+        //Glide.with(context).using(new FirebaseImageLoader()).load(pathReference).into(imgHotelFavorite);
+        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"
+                +hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(imgHotelFavorite);
+//        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"+hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(imgHotelFavorite);
 
         txtNameFavorite.setText(hotel.getName());
         txtAddressFavorite.setText("Địa chỉ: " + hotel.getAddress());
-        txtPriceFavorite.setText("Giá : 100000");
+        txtPriceFavorite.setText("Giá: " + hotel.getPrice());
+        txtRateFavorite.setText(hotel.getRate().toString());
         return row;
     }
 }
