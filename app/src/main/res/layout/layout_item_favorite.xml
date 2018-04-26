@@ -50,14 +50,5 @@
             android:background="#428500"
             android:layout_width="30dp"
             android:layout_height="30dp" />
-        <Button
-            android:id="@+id/btnViewFavorite"
-            android:padding="2dp"
-            android:textColor="#fff"
-            android:background="#007fad"
-            android:text="Chi tiết"
-            android:layout_marginLeft="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 </RelativeLayout>
