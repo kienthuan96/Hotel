@@ -53,12 +53,6 @@ public class ListHotelActivity extends AppCompatActivity {
 
         id();
 
-        lstHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                show(position);
-            }
-        });
         readData();
         event();
 
@@ -159,11 +153,34 @@ public class ListHotelActivity extends AppCompatActivity {
         lstHotel.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                delete(i);
+                luachon(i);
                 return false;
             }
         });
     }
+    private void luachon(final int stt){
+        String[] luachon={"Chỉnh Sửa","Xóa"};
+        AlertDialog.Builder alBuilder=new AlertDialog.Builder(this);
+        alBuilder.setTitle("Lựa chọn chức năng")
+                .setItems(luachon, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i){
+                            case 0:
+                            {
+                                break;
+                            }
+                            case 1:
+                            {
+                                delete(stt);
+                                break;
+                            }
+                        }
+                    }
+                });
+        alBuilder.show();
+    }
+
     public void delete(final int stt){
         AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
         alertDialog.setTitle("Thông báo")
