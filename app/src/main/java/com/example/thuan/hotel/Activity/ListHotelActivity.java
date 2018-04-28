@@ -39,7 +39,6 @@ public class ListHotelActivity extends AppCompatActivity {
     ArrayList<Hotel> arrayList;
     Adapter_Hotel adapter_hotel;
     DatabaseReference myRef;
-    Button btnDialogCo,btnDiaalogKhong;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,25 +57,6 @@ public class ListHotelActivity extends AppCompatActivity {
 
     }
 
-//    private void show(int position) {
-//        Dialog dialog = new Dialog(this);
-//        dialog.setContentView(R.layout.custom_dialog);
-//        btnDialogCo = dialog.findViewById(R.id.btn_dialogok);
-//        btnDiaalogKhong= dialog.findViewById(R.id.btn_dialogkhong);
-//        dialog.show();
-//        btnDialogCo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(ListHotelActivity.this, "pick co", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        btnDiaalogKhong.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(ListHotelActivity.this, "pick khong", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
     private void readData(){
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -155,6 +135,17 @@ public class ListHotelActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 luachon(i);
                 return false;
+            }
+        });
+        lstHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(ListHotelActivity.this,"Thanh cong "+i,Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(ListHotelActivity.this,DetaiHotelActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("id",arrayList.get(i).getId());
+                    intent.putExtra("goi",bundle);
+                    startActivity(intent);
             }
         });
     }

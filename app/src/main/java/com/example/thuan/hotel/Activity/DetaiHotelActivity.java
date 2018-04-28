@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -49,14 +52,14 @@ public class DetaiHotelActivity extends AppCompatActivity {
 
         // INIT
         Intent intent = this.getIntent();
-        if(intent !=null) {
-
+//        if(intent !=null) {
+//
             Bundle bundle = intent.getBundleExtra("goi");
             id_hotel = bundle.getString("id");
-        }
-        else {
-            id_hotel = "-LAqUFdTyh6UXVtnASG9";
-        }
+//        }
+//        else {
+//            id_hotel = "-LAqUFdTyh6UXVtnASG9";
+//        }
 
         hotel=new Hotel();
 
@@ -138,6 +141,25 @@ public class DetaiHotelActivity extends AppCompatActivity {
         else {
             databaseSQL.insert("favorite",null, contentValues);
             Toast.makeText(DetaiHotelActivity.this, "Thêm vào danh sách yêu thích thành công", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menuBook:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
