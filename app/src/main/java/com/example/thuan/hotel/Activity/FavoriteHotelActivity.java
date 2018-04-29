@@ -81,14 +81,17 @@ public class FavoriteHotelActivity extends AppCompatActivity {
 
     private void showData() {
         arrayList.clear();
+        Log.d("Size", arrHotelID.size() + "");
         if(arrHotelID.size() > 0) {
             for(int i = 0; i < arrHotelID.size(); i++) {
                 myRef.child(arrHotelID.get(i)).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         hotel = dataSnapshot.getValue(Hotel.class);
-                        arrayList.add(hotel);
-                        adapter_hotel.notifyDataSetChanged();
+                        if(hotel != null) {
+                            arrayList.add(hotel);
+                            adapter_hotel.notifyDataSetChanged();
+                        }
                     }
 
                     @Override

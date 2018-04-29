@@ -59,7 +59,7 @@ public class Adapter_Favorite_Hotel extends BaseAdapter {
         TextView txtRateFavorite    = row.findViewById(R.id.txtRateFavorite);
 
         Hotel hotel = arrayList.get(position);
-        Log.d("Image", hotel.getName());
+        //Log.d("Image", hotel.getName());
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference pathReference = storageRef.child("IMG_CONTACT/"+hotel.getImg1());
