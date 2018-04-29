@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,17 +30,11 @@
         <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.RegisterActivity" />
-<<<<<<< HEAD
-        <activity android:name=".Activity.ListHotelActivity">
-
-        </activity>
-=======
         <activity android:name=".Activity.ListHotelActivity"></activity>
         <activity android:name=".Activity.FavoriteHotelActivity"></activity>
         <activity android:name=".Activity.DetaiHotelActivity" />
         <activity android:name=".SplashActivity"></activity>
-
->>>>>>> face53f6370e2447cc3aff16699cb387c154283f
+        <activity android:name=".Activity.OrderActivity" />
     </application>
 
 </manifest>

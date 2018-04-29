@@ -43,7 +43,7 @@
                 android:layout_marginTop="8dp"
                 android:text="tenkhachsan"
                 android:textColor="#ff9f0f"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
             <TextView
                 android:id="@+id/txtDiaChi"
                 android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                 android:layout_marginTop="8dp"
                 android:text="DiaChi"
                 android:textColor="#ff9f0f"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
             <TextView
                 android:id="@+id/txtGiaTien"
                 android:layout_width="match_parent"
@@ -59,11 +59,12 @@
                 android:layout_marginTop="8dp"
                 android:text="GiaTien"
                 android:textColor="#ff9f0f"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
            <RatingBar
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:id="@+id/rbXepHang"
+               android:isIndicator="true"
 
                />
         </LinearLayout>

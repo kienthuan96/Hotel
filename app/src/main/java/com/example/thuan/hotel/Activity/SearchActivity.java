@@ -131,13 +131,17 @@ public class SearchActivity extends AppCompatActivity {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                     HashMap t = (HashMap) childSnapshot.getValue();
                     String full_hotel = covertStringToURL(t.get("city").toString());
+
                     Log.v("YourValue,", "chuoi nhap vao  is:" + full_hotel);
 
                     Log.v("YourValue,", "chuoi nhap vao  is:" + covertStringToURL(seachstring.toLowerCase()));
                     if (full_hotel.toLowerCase().contains(covertStringToURL(seachstring.toLowerCase()))) {
 
                         Log.v("YourValue,", "Map value is:" + t.toString());
-                        mKhachSanList.add(new Hotel(t.get("name").toString(), t.get("address").toString(), Float.parseFloat(t.get("price").toString())));
+                        mKhachSanList.add(new Hotel(t.get("name").toString(), t.get("address").toString(),
+                                Float.parseFloat(t.get("price").toString()), t.get("img1").toString(),
+                                Integer.parseInt(t.get("stars").toString()),
+                                Integer.parseInt(t.get("rate").toString())));
                     }
 
 
@@ -170,7 +174,10 @@ public class SearchActivity extends AppCompatActivity {
                     if (price_hotel<=Price) {
 
                         Log.v("YourValue,", "Map value is:" + t.toString());
-                        mKhachSanList.add(new Hotel(t.get("name").toString(), t.get("address").toString(), Float.parseFloat(t.get("price").toString())));
+                        mKhachSanList.add(new Hotel(t.get("name").toString(), t.get("address").toString(),
+                                Float.parseFloat(t.get("price").toString()), t.get("img1").toString(),
+                                Integer.parseInt(t.get("stars").toString()),
+                                Integer.parseInt(t.get("rate").toString())));
                         float rate_hotel = Float.parseFloat(t.get("rate").toString());
 
                     }
@@ -203,10 +210,13 @@ public class SearchActivity extends AppCompatActivity {
 
                     float stars_hotel = Float.parseFloat(t.get("stars").toString());
 
-                    if (stars_hotel<=Star) {
+                    if (stars_hotel>=Star) {
 
                         Log.v("YourValue,", "Map value is:" + t.toString());
-                        mKhachSanList.add(new Hotel(t.get("name").toString(), t.get("address").toString(), Float.parseFloat(t.get("price").toString())));
+                        mKhachSanList.add(new Hotel(t.get("name").toString(), t.get("address").toString(),
+                                Float.parseFloat(t.get("price").toString()), t.get("img1").toString(),
+                                Integer.parseInt(t.get("stars").toString()),
+                                Integer.parseInt(t.get("rate").toString())));
                    //     float rate_hotel = Float.parseFloat(t.get("rate").toString());
 
                     }
@@ -267,8 +277,10 @@ float max,min;
                     if (rate_hotel>=Rate) {
 
 
-                            mKhachSanList.add(new Hotel(t.get("name").toString(), t.get("address").toString(), Float.parseFloat(t.get("price").toString())));
-
+                        mKhachSanList.add(new Hotel(t.get("name").toString(), t.get("address").toString(),
+                                Float.parseFloat(t.get("price").toString()), t.get("img1").toString(),
+                                Integer.parseInt(t.get("stars").toString()),
+                                Integer.parseInt(t.get("rate").toString())));
                        // max =  TimMax(count,price_hotel);
                        // min = TimMin(count,price_hotel);
                     }

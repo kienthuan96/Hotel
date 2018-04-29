@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Họ và tên:"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/txtHoTen"
+            android:background="@drawable/oval"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:text="Nhận phòng:"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/in_time"
+            android:layout_below="@+id/in_date"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/calendar1"
+            android:id="@+id/btn_time"
+            android:layout_below="@+id/btn_date"
+            android:layout_alignLeft="@+id/btn_date"
+            android:layout_alignStart="@+id/btn_date" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:text="Trả phòng:"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/in_date"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+
+            />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text=""
+
+            android:background="@drawable/calendar1"
+            android:id="@+id/btn_date"
+            android:layout_alignBottom="@+id/in_date"
+            android:layout_toRightOf="@+id/in_date"
+            android:layout_toEndOf="@+id/in_date" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Email:"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/txtEmail"
+            android:background="@drawable/oval"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Điện thoại:"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/txtDienThoai"
+            android:background="@drawable/oval"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Giá tiền:"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/txtGiaTien"
+            android:background="@drawable/oval"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Số phòng:"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:id="@+id/txtSoPhong"
+            />
+        <Button
+
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Up"
+            android:id="@+id/btn_up"
+            android:gravity="center"
+            />
+        <Button
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Down"
+            android:id="@+id/btn_down"
+            android:gravity="center"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        >
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đặt phòng"
+            android:id="@+id/btn_datphong"
+            android:gravity="center"
+           />
+    </LinearLayout>
+
+</LinearLayout>

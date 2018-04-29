@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLogin, btnRegister, btnPost, btnList, btnSearch, btnFavorite,btnDetail;
+    Button btnLogin, btnRegister, btnPost, btnList, btnSearch, btnFavorite,btnDetail,btnDatPhong;
 
     FirebaseUser user;
     Context context;
@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void search() {
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+    private void Datphong() {
+        Intent intent = new Intent(MainActivity.this, OrderActivity.class);
         startActivity(intent);
     }
 
@@ -74,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
         btnDetail=findViewById(R.id.btnDetail);
         btnFavorite = findViewById(R.id.btnFavorite);
         btnSearch = findViewById(R.id.btnSearch);
+        btnDatPhong = findViewById(R.id.btnDatPhong);
+        btnDatPhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Datphong();
+            }
+        });
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
