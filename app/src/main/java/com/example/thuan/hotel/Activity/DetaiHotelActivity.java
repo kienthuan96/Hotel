@@ -11,15 +11,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.thuan.hotel.Adapter.Adapter_Image_Hotel;
 import com.example.thuan.hotel.Helper.Database;
 import com.example.thuan.hotel.Model.Hotel;
+import com.example.thuan.hotel.Model.Service;
 import com.example.thuan.hotel.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -28,7 +34,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class DetaiHotelActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -37,6 +47,7 @@ public class DetaiHotelActivity extends AppCompatActivity {
     TabHost tabHost;
     String id_hotel;
 
+    ImageView imgWifi,imgBar,imgRestaurant,imgSwimmingPool,imgPet;
     TextView txtTenKS,txtDiaChiKS,txtGiaKS,txtSDTKS;
     ImageView img;
     DatabaseReference myRef;
@@ -44,6 +55,8 @@ public class DetaiHotelActivity extends AppCompatActivity {
     Hotel hotel;
     RatingBar ratingBar;
     FloatingActionButton clickFavorite;
+    ArrayList<String> arrayListHinhAnh;
+    ListView lstHinhAnh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +93,11 @@ public class DetaiHotelActivity extends AppCompatActivity {
         tab2.setContent(R.id.tab2);
         tabHost.addTab(tab2);
 
+        TabHost.TabSpec tab3=tabHost.newTabSpec("t3");
+        tab3.setIndicator("Hình ảnh");
+        tab3.setContent(R.id.tab3);
+        tabHost.addTab(tab3);
+
         Toast.makeText(DetaiHotelActivity.this,"Thanh Cong",Toast.LENGTH_SHORT).show();
 
         load();
@@ -103,9 +121,29 @@ public class DetaiHotelActivity extends AppCompatActivity {
                 txtGiaKS.setText(hotel.getPrice()+"");
                 txtDiaChiKS.setText(hotel.getAddress());
                 ratingBar.setRating(Float.parseFloat(hotel.getStars().toString()));
-                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"
-                        +hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(img);
-                Toast.makeText(DetaiHotelActivity.this,"Thanh cong",Toast.LENGTH_SHORT).show();
+//                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"
+//                        +hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(img);
+
+//                FirebaseStorage storage = FirebaseStorage.getInstance();
+//                StorageReference storageRef = storage.getReference();
+//                StorageReference pathReference = storageRef.child("IMG_CONTACT/"+hotel.getImg1());
+//                Glide.with(DetaiHotelActivity.this).using(new FirebaseImageLoader()).load(pathReference).into(img);
+
+                Service service=hotel.getService();
+                if(service.getWifi())   imgWifi.setVisibility(View.VISIBLE); else imgWifi.setVisibility(View.INVISIBLE);
+                if(service.getPet())   imgPet.setVisibility(View.VISIBLE); else imgPet.setVisibility(View.INVISIBLE);
+                if(service.getRestaurant())   imgRestaurant.setVisibility(View.VISIBLE); else imgRestaurant.setVisibility(View.INVISIBLE);
+                if(service.getSwimmingPool())   imgSwimmingPool.setVisibility(View.VISIBLE); else imgSwimmingPool.setVisibility(View.INVISIBLE);
+                if(service.getWifi())   imgWifi.setVisibility(View.VISIBLE); else imgWifi.setVisibility(View.INVISIBLE);
+
+                arrayListHinhAnh.clear();
+                arrayListHinhAnh.add(hotel.getImg1());
+                arrayListHinhAnh.add(hotel.getImg2());
+                arrayListHinhAnh.add(hotel.getImg3());
+                Toast.makeText(DetaiHotelActivity.this, "So luong hinh: "+arrayListHinhAnh.get(2),Toast.LENGTH_SHORT).show();
+                Adapter_Image_Hotel adapter_image_hotel=new Adapter_Image_Hotel(DetaiHotelActivity.this,R.layout.layout_item_image,arrayListHinhAnh);
+                lstHinhAnh.setAdapter(adapter_image_hotel);
+                adapter_image_hotel.notifyDataSetChanged();
             }
 
             @Override
@@ -124,6 +162,13 @@ public class DetaiHotelActivity extends AppCompatActivity {
         img=findViewById(R.id.imgHotel);
         ratingBar=findViewById(R.id.rbKS);
         clickFavorite=findViewById(R.id.clickFavorite);
+        imgWifi=findViewById(R.id.imgWifi);
+        imgPet=findViewById(R.id.imgPet);
+        imgBar=findViewById(R.id.imgBar);
+        imgRestaurant=findViewById(R.id.imgRestaurant);
+        imgSwimmingPool=findViewById(R.id.imgSwimmingPool);
+        arrayListHinhAnh=new ArrayList<>();
+        lstHinhAnh=findViewById(R.id.lstImage);
     }
 
     private void addEventFavorite() {
@@ -144,22 +189,4 @@ public class DetaiHotelActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menuBook:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }
