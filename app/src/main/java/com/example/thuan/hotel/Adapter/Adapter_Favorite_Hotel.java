@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,17 +56,19 @@ public class Adapter_Favorite_Hotel extends BaseAdapter {
         TextView txtNameFavorite    = row.findViewById(R.id.txtNameFavorite);
         TextView txtAddressFavorite = row.findViewById(R.id.txtAddressFavorite);
         TextView txtPriceFavorite   = row.findViewById(R.id.txtPriceFavorite);
+        TextView txtRateFavorite    = row.findViewById(R.id.txtRateFavorite);
 
         Hotel hotel = arrayList.get(position);
+        Log.d("Image", hotel.getName());
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference pathReference = storageRef.child("IMG_CONTACT/"+hotel.getImg1());
         Glide.with(context).using(new FirebaseImageLoader()).load(pathReference).into(imgHotelFavorite);
-//        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"+hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(imgHotelFavorite);
 
         txtNameFavorite.setText(hotel.getName());
         txtAddressFavorite.setText("Địa chỉ: " + hotel.getAddress());
-        txtPriceFavorite.setText("Giá : " + hotel.getPrice().toString());
+        txtPriceFavorite.setText("Giá: " + hotel.getPrice());
+        txtRateFavorite.setText(hotel.getRate().toString());
         return row;
     }
 }

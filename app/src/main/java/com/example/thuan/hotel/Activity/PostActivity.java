@@ -55,7 +55,7 @@ public class PostActivity extends AppCompatActivity {
     InputStream inputStream_img;
     Integer img=1;
     String urlImg1,urlImg2,urlImg3;
-    Uri uri;
+    Uri uri,uri_1,uri_2,uri_3;
     Hotel hotel;
     ArrayList<Integer> arrayListRate;
     String id_user;
@@ -155,23 +155,51 @@ public class PostActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    @Override
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if(requestCode==PICK_IMAGE && resultCode==RESULT_OK){
+//            try {
+//                uri=data.getData();
+//                //name_img=uri.getLastPathSegment();
+//                inputStream_img = PostActivity.this.getContentResolver().openInputStream(data.getData());
+//                if(img==1)
+//                {
+//                    img1.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
+//                }
+//                if(img==2)
+//                {
+//                    img2.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
+//                }
+//                if(img==3)
+//                {
+//                    img3.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
+//                }
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//    }
+
+        @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==PICK_IMAGE && resultCode==RESULT_OK){
             try {
-                uri=data.getData();
-                //name_img=uri.getLastPathSegment();
+//                uri=data.getData();
                 inputStream_img = PostActivity.this.getContentResolver().openInputStream(data.getData());
                 if(img==1)
                 {
+                    uri_1=data.getData();
                     img1.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
                 }
                 if(img==2)
                 {
+                    uri_2=data.getData();
                     img2.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
                 }
                 if(img==3)
                 {
+                    uri_3=data.getData();
                     img3.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
                 }
             } catch (FileNotFoundException e) {
@@ -208,9 +236,9 @@ public class PostActivity extends AppCompatActivity {
                 chkBar.isChecked(),
                 chkSwimmingPool.isChecked());
         hotel.setService(service);
-        hotel.setImg1(uploadIMG(img1));
-        hotel.setImg2(uploadIMG(img2));
-        hotel.setImg3(uploadIMG(img3));
+        hotel.setImg1(uploadIMG(uri_1));
+        hotel.setImg2(uploadIMG(uri_2));
+        hotel.setImg3(uploadIMG(uri_3));
         hotel.setName(edtTen.getText().toString());
         hotel.setCity(edtThanhPho.getText().toString());
         hotel.setDistrict(edtThanhPho.getText().toString());
@@ -222,34 +250,53 @@ public class PostActivity extends AppCompatActivity {
         myRef.child(temp).setValue(hotel);
 
     }
-    public String uploadIMG(ImageView imageView){
-        Calendar calendar=Calendar.getInstance();
+    public String uploadIMG(Uri uri){
 
+        Calendar calendar=Calendar.getInstance();
         String ten=calendar.getTimeInMillis()+"";
 
         StorageReference filepath=storageRef.child("IMG_CONTACT").child(ten);
-        imageView.setDrawingCacheEnabled(true);
-        imageView.buildDrawingCache();
-        Bitmap bitmap = imageView.getDrawingCache();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] data = baos.toByteArray();
-        UploadTask uploadTask = filepath.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
+        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(PostActivity.this,"Thêm Thành Công !!!" , Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(PostActivity.this,"Thêm Thất Bại !!!" , Toast.LENGTH_SHORT).show();
             }
         });
-            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-
-                }
-            });
-
         return ten;
     }
+
+//    public String uploadIMG(ImageView imageView){
+//        Calendar calendar=Calendar.getInstance();
+//        String ten=calendar.getTimeInMillis()+"";
+//
+//        StorageReference filepath=storageRef.child("IMG_CONTACT").child(ten);
+//        imageView.setDrawingCacheEnabled(true);
+//        imageView.buildDrawingCache();
+//        Bitmap bitmap = imageView.getDrawingCache();
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+//        byte[] data = baos.toByteArray();
+//        UploadTask uploadTask = filepath.putBytes(data);
+//        uploadTask.addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception exception) {
+//                // Handle unsuccessful uploads
+//            }
+//        });
+//            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//
+//                }
+//            });
+//
+//        return ten;
+//    }
 
 }

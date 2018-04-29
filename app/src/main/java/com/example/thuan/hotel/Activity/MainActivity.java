@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.thuan.hotel.DeleteActivity;
 import com.example.thuan.hotel.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,8 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLogin, btnRegister, btnPost, btnList, btnSearch, btnFavorite,btnDetail,btnDatPhong;
-
+    Button btnLogin, btnRegister, btnPost, btnList, btnSearch, btnFavorite,btnDetail,btnDatPhong, btnDelete;
     FirebaseUser user;
     Context context;
     public static final int REQUEST_CODE_REGISTER = 1;
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, DetaiHotelActivity.class);
         startActivity(intent);
     }
+    private void delete(){
+        Intent intent = new Intent(MainActivity.this, DeleteActivity.class);
+        startActivity(intent);
+    }
 
     private void anhXa() {
         btnLogin =  findViewById(R.id.btnLogin);
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         btnDetail=findViewById(R.id.btnDetail);
         btnFavorite = findViewById(R.id.btnFavorite);
         btnSearch = findViewById(R.id.btnSearch);
+
         btnDatPhong = findViewById(R.id.btnDatPhong);
         btnDatPhong.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 Datphong();
             }
         });
+
+        btnDelete=findViewById(R.id.btnDelete);
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +140,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 detail();
+            }
+        });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete();
             }
         });
     }

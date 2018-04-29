@@ -2,6 +2,8 @@ package com.example.thuan.hotel.Activity;
 
 
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,7 +39,6 @@ public class ListHotelActivity extends AppCompatActivity {
     ArrayList<Hotel> arrayList;
     Adapter_Hotel adapter_hotel;
     DatabaseReference myRef;
-    Button btnDialogCo,btnDiaalogKhong;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +52,12 @@ public class ListHotelActivity extends AppCompatActivity {
 
         id();
 
-        lstHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                show(position);
-            }
-        });
-
+        readData();
         event();
 
+    }
+
+    private void readData(){
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -88,31 +86,7 @@ public class ListHotelActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
-    private void show(int position) {
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.custom_dialog);
-        btnDialogCo = dialog.findViewById(R.id.btn_dialogok);
-        btnDiaalogKhong= dialog.findViewById(R.id.btn_dialogkhong);
-        dialog.show();
-        btnDialogCo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ListHotelActivity.this, "pick co", Toast.LENGTH_SHORT).show();
-            }
-        });
-        btnDiaalogKhong.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ListHotelActivity.this, "pick khong", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-
 
     private void id(){
         lstHotel=findViewById(R.id.lstHotel);
@@ -121,16 +95,17 @@ public class ListHotelActivity extends AppCompatActivity {
         lstHotel.setAdapter(adapter_hotel);
     }
 
-    private void event(){
-        lstHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(ListHotelActivity.this,DetaiHotelActivity.class);
-//                startActivity(intent);
-                Toast.makeText(ListHotelActivity.this,"Thanh cong"+arrayList.get(i).getName(),Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void event(){
+//        lstHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent=new Intent(ListHotelActivity.this,DetaiHotelActivity.class);
+////                startActivity(intent);
+//                Toast.makeText(ListHotelActivity.this,"Thanh cong"+arrayList.get(i).getName(),Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -152,5 +127,68 @@ public class ListHotelActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void event(){
+        lstHotel.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                luachon(i);
+                return false;
+            }
+        });
+        lstHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(ListHotelActivity.this,"Thanh cong "+i,Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(ListHotelActivity.this,DetaiHotelActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("id",arrayList.get(i).getId());
+                    intent.putExtra("goi",bundle);
+                    startActivity(intent);
+            }
+        });
+    }
+    private void luachon(final int stt){
+        String[] luachon={"Chỉnh Sửa","Xóa"};
+        AlertDialog.Builder alBuilder=new AlertDialog.Builder(this);
+        alBuilder.setTitle("Lựa chọn chức năng")
+                .setItems(luachon, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i){
+                            case 0:
+                            {
+                                break;
+                            }
+                            case 1:
+                            {
+                                delete(stt);
+                                break;
+                            }
+                        }
+                    }
+                });
+        alBuilder.show();
+    }
+
+    public void delete(final int stt){
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+        alertDialog.setTitle("Thông báo")
+                .setMessage("Bạn có muốn xóa không?")
+                .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        myRef.child(arrayList.get(stt).getId()).removeValue();
+                        readData();
+                    }
+                })
+                .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
     }
 }

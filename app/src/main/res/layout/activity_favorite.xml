@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
-        android:textSize="20dp"
+        android:textSize="26dp"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:textColor="#ff0000"
+        android:textColor="#060606"
         android:id="@+id/txtList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Danh sách khách sạn yêu thích của bạn" />
+        android:text="Danh sách khách sạn yêu thích" />
 
     <ListView
         android:id="@+id/lvFavorite"

@@ -1,15 +1,27 @@
 package com.example.thuan.hotel.Activity;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.thuan.hotel.Helper.Database;
 import com.example.thuan.hotel.Model.Hotel;
 import com.example.thuan.hotel.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,23 +31,42 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class DetaiHotelActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+    final String DATABASE_NAME = "database.sqlite";
+    SQLiteDatabase databaseSQL;
     TabHost tabHost;
-    String id_hotel="-LAqUFdTyh6UXVtnASG9";
+    String id_hotel;
+
     TextView txtTenKS,txtDiaChiKS,txtGiaKS,txtSDTKS;
     ImageView img;
     DatabaseReference myRef;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     Hotel hotel;
     RatingBar ratingBar;
+    FloatingActionButton clickFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detai_hotel);
+
+        // INIT
+        Intent intent = this.getIntent();
+//        if(intent !=null) {
+//
+            Bundle bundle = intent.getBundleExtra("goi");
+            id_hotel = bundle.getString("id");
+//        }
+//        else {
+//            id_hotel = "-LAqUFdTyh6UXVtnASG9";
+//        }
+
         hotel=new Hotel();
 
         myRef = database.getReference("hotel").child(id_hotel);
         id();
+
+
 
         tabHost.setup();
 
@@ -53,7 +84,12 @@ public class DetaiHotelActivity extends AppCompatActivity {
 
         load();
         //Toast.makeText(DetaiHotelActivity.this,"Load",Toast.LENGTH_SHORT).show();
-
+        clickFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addEventFavorite();
+            }
+        });
     }
 
     private void load(){
@@ -87,5 +123,43 @@ public class DetaiHotelActivity extends AppCompatActivity {
         txtGiaKS=findViewById(R.id.txtGiaKS);
         img=findViewById(R.id.imgHotel);
         ratingBar=findViewById(R.id.rbKS);
+        clickFavorite=findViewById(R.id.clickFavorite);
+    }
+
+    private void addEventFavorite() {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("user_id", user.getUid());
+        contentValues.put("hotel_id", id_hotel);
+
+        databaseSQL = Database.initDatabase(this, DATABASE_NAME);
+        Cursor cursor = databaseSQL.rawQuery("SELECT * FROM favorite where user_id = '" + user.getUid()  +"' AND hotel_id = '"+ id_hotel +"'",null);
+        if(cursor.getCount() != 0) {
+            Toast.makeText(DetaiHotelActivity.this, "Khách sạn này đã thêm vào danh sách yêu thích của bạn", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            databaseSQL.insert("favorite",null, contentValues);
+            Toast.makeText(DetaiHotelActivity.this, "Thêm vào danh sách yêu thích thành công", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menuBook:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

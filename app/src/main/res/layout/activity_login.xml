@@ -2,11 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:padding="10dp">
-
     <ImageView
         android:background="@drawable/custom_imageview_login"
         android:src="@drawable/ic_person_black_24dp"
@@ -29,7 +27,7 @@
         <!-- Email Label -->
 
         <TextView
-            android:textColor="#f5dcdc"
+            android:textColor="#121111"
             android:layout_marginLeft="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -53,7 +51,7 @@
 
         <TextView
             android:layout_marginLeft="5dp"
-            android:textColor="#f5dcdc"
+            android:textColor="#131313"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Password:"
@@ -89,7 +87,7 @@
             android:text="Login"/>
 
         <TextView
-            android:textColor="#f5dcdc"
+            android:textColor="#0d0d0d"
             android:layout_gravity="center"
             android:id="@+id/txt_link_register"
             android:layout_width="fill_parent"

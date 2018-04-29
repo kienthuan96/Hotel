@@ -24,10 +24,20 @@
         </list>
       </value>
     </option>
+<<<<<<< HEAD
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 364341796aa399aa96d602972cf2333985d75329
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+>>>>>>> 63290d6929bfa4c6b95efde150642d90a159a512
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
