@@ -1,6 +1,8 @@
 package com.example.thuan.hotel.Activity;
 
+import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +13,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -57,6 +62,7 @@ public class DetaiHotelActivity extends AppCompatActivity {
     FloatingActionButton clickFavorite;
     ArrayList<String> arrayListHinhAnh;
     ListView lstHinhAnh;
+    Animation aniName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +123,7 @@ public class DetaiHotelActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 hotel= dataSnapshot.getValue(Hotel.class);
                 txtTenKS.setText(hotel.getName());
+//                txtTenKS.setAnimation(aniName);
                 txtSDTKS.setText(hotel.getNumberPhone()+"");
                 txtGiaKS.setText(hotel.getPrice()+"");
                 txtDiaChiKS.setText(hotel.getAddress());
@@ -169,6 +176,7 @@ public class DetaiHotelActivity extends AppCompatActivity {
         imgSwimmingPool=findViewById(R.id.imgSwimmingPool);
         arrayListHinhAnh=new ArrayList<>();
         lstHinhAnh=findViewById(R.id.lstImage);
+        aniName= AnimationUtils.loadAnimation(this,R.anim.name_hotel);
     }
 
     private void addEventFavorite() {
@@ -187,6 +195,13 @@ public class DetaiHotelActivity extends AppCompatActivity {
             databaseSQL.insert("favorite",null, contentValues);
             Toast.makeText(DetaiHotelActivity.this, "Thêm vào danh sách yêu thích thành công", Toast.LENGTH_SHORT).show();
         }
+
+        lstHinhAnh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
 
 }

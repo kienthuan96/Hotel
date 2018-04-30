@@ -155,31 +155,6 @@ public class PostActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if(requestCode==PICK_IMAGE && resultCode==RESULT_OK){
-//            try {
-//                uri=data.getData();
-//                //name_img=uri.getLastPathSegment();
-//                inputStream_img = PostActivity.this.getContentResolver().openInputStream(data.getData());
-//                if(img==1)
-//                {
-//                    img1.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
-//                }
-//                if(img==2)
-//                {
-//                    img2.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
-//                }
-//                if(img==3)
-//                {
-//                    img3.setImageBitmap(BitmapFactory.decodeStream(inputStream_img));
-//                }
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//    }
 
         @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
