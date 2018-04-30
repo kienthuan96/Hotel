@@ -32,7 +32,9 @@
         <activity android:name=".Activity.ListHotelActivity" />
         <activity android:name=".Activity.FavoriteHotelActivity" />
         <activity android:name=".Activity.DetaiHotelActivity" />
-        <activity android:name=".SplashActivity" />
+
+        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".Activity.ThemBinhLuanActivity"></activity>
         <activity android:name=".Activity.OrderActivity" />
         <activity android:name=".DeleteActivity" />
         <activity android:name=".EditActivity"></activity>

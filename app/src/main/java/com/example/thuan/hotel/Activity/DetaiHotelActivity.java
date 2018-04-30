@@ -13,9 +13,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+
+import android.widget.Button;
+
 import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,10 +29,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.thuan.hotel.Adapter.Adapter_BinhLuan;
 import com.example.thuan.hotel.Adapter.Adapter_Image_Hotel;
 import com.example.thuan.hotel.Helper.Database;
+import com.example.thuan.hotel.Model.BinhLuan;
 import com.example.thuan.hotel.Model.Hotel;
 import com.example.thuan.hotel.Model.Service;
+import com.example.thuan.hotel.Program;
 import com.example.thuan.hotel.R;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,12 +57,26 @@ public class DetaiHotelActivity extends AppCompatActivity {
     final String DATABASE_NAME = "database.sqlite";
     SQLiteDatabase databaseSQL;
     TabHost tabHost;
+        Program pr;
+
     String id_hotel;
+    //Khai bao 2 Button Them va Thoat Comment
+    private Button ThemBL;
+    private Button ThoatBL;
+    private ListView listView_Comment ;
+    private Adapter_BinhLuan adapter_binhLuan;
+    private ArrayList<BinhLuan> data;
+    DatabaseReference mDatabase;
+    DatabaseReference myRef;
+  private   float tongDiem  =0 ;
+    private int countBL= 0 ;
+    public  float diemTBkhachSan ;
+
 
     ImageView imgWifi,imgBar,imgRestaurant,imgSwimmingPool,imgPet;
     TextView txtTenKS,txtDiaChiKS,txtGiaKS,txtSDTKS;
     ImageView img;
-    DatabaseReference myRef;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     Hotel hotel;
     RatingBar ratingBar;
@@ -84,6 +105,7 @@ public class DetaiHotelActivity extends AppCompatActivity {
 
         myRef = database.getReference("hotel").child(id_hotel);
         id();
+        KhoiTao_BinhLuan();
 
 
 
@@ -104,9 +126,11 @@ public class DetaiHotelActivity extends AppCompatActivity {
         tab3.setContent(R.id.tab3);
         tabHost.addTab(tab3);
 
+
         Toast.makeText(DetaiHotelActivity.this,"Thanh Cong",Toast.LENGTH_SHORT).show();
 
         load();
+        readData_BinhLuan();
         //Toast.makeText(DetaiHotelActivity.this,"Load",Toast.LENGTH_SHORT).show();
         clickFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +138,31 @@ public class DetaiHotelActivity extends AppCompatActivity {
                 addEventFavorite();
             }
         });
+
+        // Bat su kien cho nut Button Them va Thoat
+
+        ThoatBL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_Thoat = new Intent(DetaiHotelActivity.this, MainActivity.class);
+                startActivity(intent_Thoat);
+                Toast.makeText(DetaiHotelActivity.this, "Chuyển Đến Menu", Toast.LENGTH_SHORT).show();
+            }
+        });
+        ThemBL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_ThemBL = new Intent(DetaiHotelActivity.this, ThemBinhLuanActivity.class);
+                startActivity(intent_ThemBL);
+                Toast.makeText(DetaiHotelActivity.this, "Chuyển đến Thêm Bình Luận", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+
+
+
 
     private void load(){
 
@@ -123,11 +171,14 @@ public class DetaiHotelActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 hotel= dataSnapshot.getValue(Hotel.class);
                 txtTenKS.setText(hotel.getName());
-//                txtTenKS.setAnimation(aniName);
                 txtSDTKS.setText(hotel.getNumberPhone()+"");
                 txtGiaKS.setText(hotel.getPrice()+"");
                 txtDiaChiKS.setText(hotel.getAddress());
                 ratingBar.setRating(Float.parseFloat(hotel.getStars().toString()));
+
+                    //Nhận dữ liệu truyền qua Comment
+                  Program.tenKhachSan   = hotel.getName();
+                  Program.IDKhachSan= hotel.getId();
 //                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/hotel-793b0.appspot.com/o/IMG_CONTACT%2F"
 //                        +hotel.getImg1()+"?alt=media&token=d5f61a15-07d0-4f70-8ed8-0fa389da9e52").into(img);
 
@@ -161,6 +212,9 @@ public class DetaiHotelActivity extends AppCompatActivity {
 
     }
     private void id(){
+
+
+
         tabHost=findViewById(R.id.tabhost);
         txtTenKS=findViewById(R.id.txtTenKS);
         txtSDTKS=findViewById(R.id.txtSDTKS);
@@ -199,6 +253,58 @@ public class DetaiHotelActivity extends AppCompatActivity {
         lstHinhAnh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+    }
+
+    private void KhoiTao_BinhLuan(){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+// Anh xa 2 Button Comment
+
+        ThemBL = (Button) findViewById(R.id.btnThemBL);
+        ThoatBL =(Button) findViewById(R.id.btnThoat);
+        // ÁNh xạ listView
+        listView_Comment = (ListView) findViewById(R.id.listComment);
+        //Khởi tạo mảng và ánh xạ Adapter vào listView
+        data = new ArrayList<>();
+        adapter_binhLuan = new Adapter_BinhLuan(this,data);
+        listView_Comment.setAdapter(adapter_binhLuan);
+
+    }
+    private void readData_BinhLuan(){
+        // ĐƯa id của hotel
+        mDatabase.child("hotel").child(id_hotel).child("BinhLuan").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                BinhLuan bl = dataSnapshot.getValue(BinhLuan.class);
+                tongDiem += bl.DiemBL;
+
+                data.add(bl);
+                countBL = data.size();
+                diemTBkhachSan = (float)tongDiem / countBL; // tính trung binhf cho nay
+                Toast.makeText(DetaiHotelActivity.this, "ĐIểm trung bình " + diemTBkhachSan, Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(DetaiHotelActivity.this, "Đã load dữ liệu thành công! ", Toast.LENGTH_SHORT).show();
+                adapter_binhLuan.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
