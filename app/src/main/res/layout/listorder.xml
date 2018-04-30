@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Họ tên:"
+        android:textColor="#ff9f0f"
+        android:textSize="25dp" />
+    <TextView
+        android:id="@+id/txtHT"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="hoten"
+        android:textColor="#ff9f0f"
+        android:textSize="25dp" />
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Số điện thoại: "
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/txtDT"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="sdt"
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Email: "
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/txtEM"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="email"
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Ngày đặt: "
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/txtND"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="ngaydat"
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Ngày trả: "
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/txtNT"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="ngaytra"
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Số phòng đặt : "
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/txtSPD"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="sophongdat"
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Tổng tiền: "
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/txtTT"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="tongtien"
+            android:textColor="#ff9f0f"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+</LinearLayout>

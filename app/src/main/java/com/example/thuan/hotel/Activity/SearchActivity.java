@@ -1,7 +1,12 @@
 package com.example.thuan.hotel.Activity;
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
+import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.example.thuan.hotel.R;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -61,8 +66,8 @@ public class SearchActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    SeekBar barseach;
-    SeekBar barRate;
+    CrystalSeekbar barseach;
+    CrystalSeekbar barRate;
     RatingBar rbSao;
     TextView testSao;
     TextView test1;
@@ -143,12 +148,8 @@ public class SearchActivity extends AppCompatActivity {
                                 Integer.parseInt(t.get("stars").toString()),
                                 Integer.parseInt(t.get("rate").toString())));
                     }
-
-
                 }
-
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -328,10 +329,16 @@ float max,min;
                     Log.v("MINCONCAC1", "Map value is:" + String.valueOf(min));
                     Log.v("MAXCONCAC1", "Map value is:" + String.valueOf(max));
                 }
-
-                barseach.setMax((int) max+(int) min);
-                barseach.setMin((int)min);
-                barseach.setProgress((int)min);
+                barseach.setMaxValue((int)max);
+                barseach.setMinValue((int)min);
+                test1.setText(""+min);
+//                CrystalRangeSeekbar.setMax((int) max+(int) min);
+//                if(Build.VERSION.SDK_INT > Build.VERSION_CODES.N){
+//                    barseach.setMin((int)min);
+//                } else {
+//
+//                }
+//                barseach.setProgress((int)min);
                 adapter.notifyDataSetChanged();
 
             }
@@ -362,8 +369,7 @@ float max,min;
                   TimMax(count,rate_hotel);
                     count++;
                 }
-                Log.v("MINCONCAC", "Map value is:" + String.valueOf(min));
-                Log.v("MAXCONCAC", "Map value is:" + String.valueOf(max));
+
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                     HashMap t = (HashMap) childSnapshot.getValue();
 
@@ -371,10 +377,15 @@ float max,min;
                     float price_hotel = Float.parseFloat(t.get("price").toString());
 
                 }
-
-                barRate.setMax((int) max+(int) min);
-                barRate.setMin((int) min);
-                barRate.setProgress((int)max);
+                barRate.setMaxValue((int)max);
+                barRate.setMinValue((int)min);
+                testDiem.setText(""+min);
+//                if(Build.VERSION.SDK_INT > Build.VERSION_CODES.N){
+//                    barRate.setMin((int)min);
+//                } else {
+//
+//                }
+   //       barRate.setProgress((int)max);
 
                 adapter.notifyDataSetChanged();
 
@@ -394,8 +405,8 @@ float max,min;
         setContentView(R.layout.activity_search);
 
 
-        barseach = (SeekBar)findViewById(R.id.sbGia);
-        barRate = (SeekBar)findViewById(R.id.sbDiem);
+        barseach = (CrystalSeekbar)findViewById(R.id.sbGia);
+        barRate = (CrystalSeekbar)findViewById(R.id.sbDiem);
         testDiem = (TextView)findViewById(R.id.testDiem);
         test1 = (TextView)findViewById(R.id.test);
         rbSao = (RatingBar)findViewById(R.id.rbSao);
@@ -408,47 +419,43 @@ float max,min;
             }
         });
 
-        barRate.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
-                progessD =i;
-                testDiem.setText(""+progessD);
-                testDiem.setTextSize(17);
-                seachRate(progessD);
-                Log.v("progess,", "chuoi nhap vao  is:" + testDiem.getText());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+        barRate.setOnSeekbarChangeListener((value) -> {
+            progessD = value.intValue();
+            testDiem.setText(""+progessD);
+            testDiem.setTextSize(17);
+            seachRate(progessD);
+            Log.v("progess,", "chuoi nhap vao  is:" + testDiem.getText());
         });
-        barseach.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
-                progess =i;
-                test1.setText(""+progess);
-                test1.setTextSize(17);
-                seachPrice(progess);
-                Log.v("progess,", "chuoi nhap vao  is:" + test1.getText());
 
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+        barseach.setOnSeekbarChangeListener((value) -> {
+            progess = value.intValue();
+            test1.setText(""+progess);
+            test1.setTextSize(17);
+            seachPrice(progess);
+            Log.v("progess,", "chuoi nhap vao  is:" + test1.getText());
         });
+
+//        barseach.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
+//                progess =i;
+//                test1.setText(""+progess);
+//                test1.setTextSize(17);
+//                seachPrice(progess);
+//                Log.v("progess,", "chuoi nhap vao  is:" + test1.getText());
+//
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
         dl = (DrawerLayout)findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
 
@@ -467,9 +474,6 @@ float max,min;
         adapter = new Adapter_Search_Hotel(getApplicationContext(),mKhachSanList);
         mListView.setAdapter(adapter);
         Firebase.setAndroidContext(this);
-        if(!FirebaseApp.getApps(this).isEmpty()) {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        }
 
         textSeach.setQueryHint("Nhap ten khach san/dia diem");
         myFB = new Firebase("https://hotel-793b0.firebaseio.com/hotel");

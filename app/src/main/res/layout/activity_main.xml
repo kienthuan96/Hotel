@@ -75,5 +75,21 @@
         android:layout_marginTop="170dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <Button
+        android:text="Danh sach dat"
+        android:id="@+id/btnDanhsachdat"
+        android:layout_marginTop="170dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnGoogleMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="194dp"
+        android:layout_marginEnd="56dp"
+        android:text="GoogleMap" />
 
 </RelativeLayout>
