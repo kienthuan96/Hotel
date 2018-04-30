@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        android:background="@drawable/logo4"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:text="THÊM BÌNH LUẬN"
+            android:textSize="30dp"
+            android:background="#52f406"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    android:text="ID"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/idKhachSan"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    android:text="Đây là ID Khách Sạn"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    android:text="Tên KS:"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/tenKhachSan"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    android:text="Đây là Tên Khách Sạn"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    android:text="Ngày Tạo"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/idNgayTaoBL"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    android:text="Đây là Ngày Tạo Bình Luận"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    android:text="Người Đăng "
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <EditText
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="20dp"
+                    android:hint="Nhập Người Đăng "
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:textSize="30dp"
+                    android:text="Nhận Xét"
+                    android:padding="20dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <EditText
+                    android:id="@+id/edtNhanXet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:hint="Mời  nhập Nhận xét"
+                    android:padding="20dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:textSize="30dp"
+                    android:text="Điểm"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <EditText
+                    android:id="@+id/edtDiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="30dp"
+                    android:hint="nhập vào điểm"
+                    android:text="7"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnGuiBL"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:background="#ff6f00"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:text="GỬI BÌNH LUẬN"/>
+            <Button
+                android:id="@+id/btnThoatBL"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:background="#2d5c00"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:text="THOÁT"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

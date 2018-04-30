@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="Nhan xet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="420dp"
+       android:orientation="vertical">
+
+        <ListView
+           android:id="@+id/listComment"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+       </ListView>
+   </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnThemBL"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:background="#F20"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:text="THÊM BÌNH LUẬN"/>
+        <Button
+            android:id="@+id/btnThoat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffc800"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:text="THOÁT"/>
+    </LinearLayout>
+
+
 </LinearLayout>
