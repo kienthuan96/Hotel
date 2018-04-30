@@ -45,15 +45,20 @@ public class FavoriteHotelActivity extends AppCompatActivity {
     String hotelID;
     Context context;
     Hotel hotel;
+    String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+//        FirebaseUser user = mAuth.getCurrentUser();
         // Check login
-        checkLogin(user);
+//        checkLogin(user);
+
+        Intent intent=getIntent();
+        Bundle bundle=intent.getBundleExtra("goi");
+        user=bundle.getString("id");
 
         myRef = database.getReference("hotel");
         init();
@@ -103,23 +108,40 @@ public class FavoriteHotelActivity extends AppCompatActivity {
         }
     }
 
-    private void readData(FirebaseUser user) {
-        arrHotelID.clear();
-        databaseSQL = Database.initDatabase(this, DATABASE_NAME);
-        Cursor cursor = databaseSQL.rawQuery("SELECT * FROM favorite where user_id = '" + user.getUid()  +"'",null);
+//    private void readData(FirebaseUser user) {
+//        arrHotelID.clear();
+//        databaseSQL = Database.initDatabase(this, DATABASE_NAME);
+//        Cursor cursor = databaseSQL.rawQuery("SELECT * FROM favorite where user_id = '" + user.getUid()  +"'",null);
+//
+//        if(cursor.getCount() == 0) {
+//            Toast.makeText(this, "Hiện vẫn chưa có khách sạn nào trong danh sách yêu thích", Toast.LENGTH_LONG).show();
+//        }
+//        else {
+//            for(int i = 0; i < cursor.getCount(); i++){
+//                cursor.moveToPosition(i);
+//                String hotel_id = cursor.getString(0);
+//                arrHotelID.add(hotel_id);
+//            }
+//        }
+//
+//    }
+private void readData(String user) {
+    arrHotelID.clear();
+    databaseSQL = Database.initDatabase(this, DATABASE_NAME);
+    Cursor cursor = databaseSQL.rawQuery("SELECT * FROM favorite where user_id = '" + user  +"'",null);
 
-        if(cursor.getCount() == 0) {
-            Toast.makeText(this, "Hiện vẫn chưa có khách sạn nào trong danh sách yêu thích", Toast.LENGTH_LONG).show();
-        }
-        else {
-            for(int i = 0; i < cursor.getCount(); i++){
-                cursor.moveToPosition(i);
-                String hotel_id = cursor.getString(0);
-                arrHotelID.add(hotel_id);
-            }
-        }
-
+    if(cursor.getCount() == 0) {
+        Toast.makeText(this, "Hiện vẫn chưa có khách sạn nào trong danh sách yêu thích", Toast.LENGTH_LONG).show();
     }
+    else {
+        for(int i = 0; i < cursor.getCount(); i++){
+            cursor.moveToPosition(i);
+            String hotel_id = cursor.getString(0);
+            arrHotelID.add(hotel_id);
+        }
+    }
+
+}
 
     private boolean show(final String hotel_id) {
         final Dialog dialog = new Dialog(this);
@@ -130,7 +152,7 @@ public class FavoriteHotelActivity extends AppCompatActivity {
         btnDialogYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteItem(hotel_id);
+//                deleteItem(hotel_id);
                 showData();
                 Toast.makeText(FavoriteHotelActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
@@ -169,9 +191,9 @@ public class FavoriteHotelActivity extends AppCompatActivity {
         });
     }
 
-    private void deleteItem(String hotel_ID) {
-        FirebaseUser user = mAuth.getCurrentUser();
-        databaseSQL.delete("favorite", "user_id = ? and hotel_id = ?", new String[]{user.getUid(), hotel_ID});
-        readData(user);
-    }
+//    private void deleteItem(String hotel_ID) {
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        databaseSQL.delete("favorite", "user_id = ? and hotel_id = ?", new String[]{user.getUid(), hotel_ID});
+//        readData(user);
+//    }
 }

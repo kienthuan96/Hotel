@@ -124,6 +124,13 @@ public class ListHotelActivity extends AppCompatActivity {
                 intent.putExtra("goi",bundle1);
                 startActivity(intent);
                 return true;
+            case R.id.menuFavorite:
+                Intent intent2=new Intent(ListHotelActivity.this,FavoriteHotelActivity.class);
+                Bundle bundle2=new Bundle();
+                bundle2.putString("id",id_user);
+                intent2.putExtra("goi",bundle2);
+                startActivity(intent2);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
+    public String getEmail;
     private FirebaseAuth mAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -65,6 +66,10 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Lay email gan qua cho Comment
+                getEmail = edtEmail.getText().toString();
+
+
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
                 if(email.equals("") || password.equals("")) {

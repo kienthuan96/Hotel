@@ -36,6 +36,7 @@
         <activity android:name=".Activity.FavoriteHotelActivity"></activity>
         <activity android:name=".Activity.DetaiHotelActivity" />
         <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".Activity.ThemBinhLuanActivity"></activity>
         <activity android:name=".Activity.OrderActivity" />
         <activity android:name=".DeleteActivity"></activity>
         <activity android:name=".Activity.ListOderActivity"></activity>
