@@ -6,17 +6,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -36,13 +32,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class OrderActivity extends AppCompatActivity implements
         View.OnClickListener {
-    ImageButton btnDatePicker, btnTimePicker;
-    Button btnDat,btnUp,btnDown;
+    Button btnDatePicker, btnTimePicker,btnDat,btnUp,btnDown;
     EditText txtDate, txtTime,txtHoTen,txtEmail,txtSDT,txtSophong,txtGiaTien;
     private int mYear, mMonth, mDay, mHour, mMinute;
     public static DatabaseReference def;
@@ -86,8 +79,8 @@ public class OrderActivity extends AppCompatActivity implements
     }
     private void getTimeInEditText()
     {
-        btnDatePicker=(ImageButton)findViewById(R.id.btn_date);
-        btnTimePicker=(ImageButton)findViewById(R.id.btn_time);
+        btnDatePicker=(Button)findViewById(R.id.btn_date);
+        btnTimePicker=(Button)findViewById(R.id.btn_time);
         btnUp = (Button)findViewById(R.id.btn_up);
         btnDown = (Button)findViewById(R.id.btn_down);
         txtDate=(EditText)findViewById(R.id.in_date);
@@ -208,6 +201,7 @@ public class OrderActivity extends AppCompatActivity implements
         btnDat = (Button)findViewById(R.id.btn_datphong);
 
         btnDat.setOnClickListener(v -> {
+           Log.d("111", "HHH");
             String HoTen = txtHoTen.getText().toString();
             String ngaynhanphong = txtTime.getText().toString();
             String ngaytraphong = txtDate.getText().toString();
@@ -215,42 +209,13 @@ public class OrderActivity extends AppCompatActivity implements
             String dienthoai = txtSDT.getText().toString();
             float giatien = Float.parseFloat(txtGiaTien.getText().toString());
             int Sophong = Integer.parseInt(txtSophong.getText().toString());
-            Pattern pattern = Pattern.compile(".+@.+\\.[a-z]+");
-            Matcher matcher = pattern.matcher(email);
-            // Empty
-            if(HoTen.equals("")) {
-                Toast.makeText(this, "Bạn chưa nhập họ tên", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if(email.equals("")) {
-                Toast.makeText(this, "Bạn chưa nhập email", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if(dienthoai.equals("")) {
-                Toast.makeText(this, "Bạn chưa nhập điện thoại", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            // Regex
-            if(!isEmailValid(email)) {
-                Toast.makeText(this, "Không đúng định dạng email", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if(!PhoneNumberUtils.isGlobalPhoneNumber(dienthoai)) {
-                Toast.makeText(this, "Không đúng định dạng số điện thoại", Toast.LENGTH_LONG).show();
-                return;
-            }
-
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        GMailSender sender = new GMailSender("thanghoang064@gmail.com", "eotzmfeyuycgblmi");
+                        GMailSender sender = new GMailSender("thanghoang064@gmail.com", "12081996");
                         sender.sendMail("Xác nhận đặt phòng thành công",
-                                "Cảm ơn bạn đã đặt phòng từ ngày "+ngaynhanphong +" tới ngày " +ngaytraphong +". Với giá tiền" +giatien
+                                "Cảm ơn bạn đã đặt phòng từ ngày "+ngaynhanphong +"tới ngày " +ngaytraphong +". Với giá tiền" +giatien
                                 +". Khách sạn sẽ liên hệ lại với bạn chúc bạn có 1 kì nghỉ vui vẻ ở khách sạn"
                                 ,
                                 email,
@@ -281,7 +246,7 @@ public class OrderActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datphong);
         getTimeInEditText();
-        setUp();
+      setUp();
         Dathang();
         setDown();
         txtDate=(EditText)findViewById(R.id.in_date);
@@ -425,10 +390,6 @@ public class OrderActivity extends AppCompatActivity implements
         cal.add(Calendar.DATE, days);
 
         return cal.getTime();
-    }
-
-    private boolean isEmailValid(String email) {
-        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
 }

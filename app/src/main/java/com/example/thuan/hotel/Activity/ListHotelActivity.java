@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.thuan.hotel.Adapter.Adapter_Hotel;
-import com.example.thuan.hotel.EditActivity;
 import com.example.thuan.hotel.Model.Hotel;
 import com.example.thuan.hotel.R;
 import com.google.firebase.database.ChildEventListener;
@@ -167,11 +166,6 @@ public class ListHotelActivity extends AppCompatActivity {
                         switch (i){
                             case 0:
                             {
-                                Intent intent=new Intent(ListHotelActivity.this, EditActivity.class);
-                                Bundle bundle=new Bundle();
-                                bundle.putString("id",arrayList.get(stt).getId());
-                                intent.putExtra("goi",bundle);
-                                startActivity(intent);
                                 break;
                             }
                             case 1:

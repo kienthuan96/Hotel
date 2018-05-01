@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/logo9"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:paddingTop="20dp"
+            android:paddingLeft="80dp"
+            android:text="MENU GHI CHÚ"
+            />
+        <Button
+            android:id="@+id/themGhiChu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/logo9"
+            android:text="TẠO GHI CHÚ"
+            android:textSize="30dp"
+            android:layout_marginTop="80dp"
+            />
+        <Button
+            android:id="@+id/xemGhiChu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/logo9"
+            android:text="DANH SÁCH GHI CHÚ"
+            android:textSize="30dp"
+            android:layout_marginTop="30dp"
+            />
+        <Button
+            android:id="@+id/thoatGhiChu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/logo9"
+            android:text="THOÁT"
+            android:textSize="30dp"
+            android:layout_marginTop="30dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
