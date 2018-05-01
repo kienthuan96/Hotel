@@ -217,9 +217,6 @@ public class DetaiHotelActivity extends AppCompatActivity {
 
     }
     private void id(){
-
-
-
         tabHost=findViewById(R.id.tabhost);
         txtTenKS=findViewById(R.id.txtTenKS);
         txtSDTKS=findViewById(R.id.txtSDTKS);
