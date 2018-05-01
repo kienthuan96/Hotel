@@ -24,7 +24,7 @@
             <TextView
                 android:id="@+id/itemDiemKhachSan"
                 android:layout_width="match_parent"
-                android:layout_heinght="120dp"
+                android:layout_height="120dp"
                 android:text="Điểm"
                 android:textSize="40dp"
                 android:paddingTop="30dp"

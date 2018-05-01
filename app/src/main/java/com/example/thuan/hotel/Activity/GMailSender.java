@@ -19,7 +19,8 @@ public class GMailSender extends javax.mail.Authenticator  {
     private String password;
     private Session session;
 
-    static {
+    static
+    {
         Security.addProvider(new JSSEProvider());
     }
 

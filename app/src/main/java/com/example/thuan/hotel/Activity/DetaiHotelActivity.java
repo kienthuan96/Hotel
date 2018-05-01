@@ -126,6 +126,11 @@ public class DetaiHotelActivity extends AppCompatActivity {
         tab3.setContent(R.id.tab3);
         tabHost.addTab(tab3);
 
+        TabHost.TabSpec tab4=tabHost.newTabSpec("t4");
+        tab4.setIndicator("Chi Duong");
+        tab4.setContent(R.id.tab4);
+        tabHost.addTab(tab4);
+
 
         Toast.makeText(DetaiHotelActivity.this,"Thanh Cong",Toast.LENGTH_SHORT).show();
 

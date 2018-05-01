@@ -5,10 +5,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
+        android:name=".HotelApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -36,8 +40,15 @@
         <activity android:name=".SplashActivity"></activity>
         <activity android:name=".Activity.ThemBinhLuanActivity"></activity>
         <activity android:name=".Activity.OrderActivity" />
+
         <activity android:name=".DeleteActivity" />
         <activity android:name=".EditActivity"></activity>
+        <activity android:name=".Activity.ListOderActivity"></activity>
+        <activity android:name=".Activity.GoogleMapActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAH9gDKfPw2VX70RTEJ2mEgHDVFzqLHfvU"/>
     </application>
 
 </manifest>

@@ -7,11 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.DetaiHotelActivity">
-    <!--<RelativeLayout-->
-        <!--android:layout_weight="1"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp">-->
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/clickFavorite"
@@ -78,6 +74,14 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
                         <include layout="@layout/layout_hinhanh"></include>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/tab4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <include layout="@layout/layout_chiduong"></include>
 
                     </LinearLayout>
                 </FrameLayout>
